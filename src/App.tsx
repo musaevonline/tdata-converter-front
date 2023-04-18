@@ -1,11 +1,21 @@
 import React, { useRef, useState } from "react";
-import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  LinearProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import ClearIcon from "@mui/icons-material/Clear";
+import { saveAs } from "file-saver";
+import { decode } from "base64-arraybuffer";
 
 export const App: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const urlsRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     maxFiles: 10,
@@ -20,10 +30,34 @@ export const App: React.FC = () => {
 
   const submit = () => {
     const urls = urlsRef.current?.value?.split("\n")?.filter(Boolean) || [];
-    console.log({
-      files,
-      urls,
-    });
+
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file));
+    urls.forEach((url) => formData.append("urls", url));
+
+    setLoading(true);
+
+    fetch("/api/convert", {
+      body: formData,
+      method: "post",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.count > 0 && res.zip) {
+          return new Blob([decode(res.zip)]);
+        } else {
+          throw new Error("TData файлы не найдены.");
+        }
+      })
+      .then((res) => saveAs(res, "sessions.zip"))
+      .then(() => {
+        setFiles([]);
+        if (urlsRef.current?.value) {
+          urlsRef.current.value = "";
+        }
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -103,7 +137,7 @@ export const App: React.FC = () => {
                 flexGrow={1}
               >
                 {files.map((file) => (
-                  <Box display="flex" gap={0.5}>
+                  <Box key={file.name} display="flex" gap={0.5}>
                     <IconButton
                       sx={{ width: 24, height: 24 }}
                       color="error"
@@ -153,6 +187,7 @@ export const App: React.FC = () => {
           >
             Конвертировать
           </Button>
+          {loading && <LinearProgress />}
         </Box>
         <Typography padding={{ xs: 3, md: 0 }}>
           What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
