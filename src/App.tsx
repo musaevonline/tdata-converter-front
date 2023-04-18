@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import ClearIcon from "@mui/icons-material/Clear";
 
 export const App: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
+  const urlsRef = useRef<HTMLInputElement>(null);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     maxFiles: 10,
     onDrop(accepted) {
@@ -12,9 +14,17 @@ export const App: React.FC = () => {
       const newFiles = accepted.filter(
         (file) => !fileNames.includes(file.name)
       );
-      setFiles([...files, ...newFiles]);
+      setFiles([...files, ...newFiles].slice(0, 10));
     },
   });
+
+  const submit = () => {
+    const urls = urlsRef.current?.value?.split("\n")?.filter(Boolean) || [];
+    console.log({
+      files,
+      urls,
+    });
+  };
 
   return (
     <Box maxWidth={1240} marginX="auto">
@@ -95,6 +105,7 @@ export const App: React.FC = () => {
             )}
           </Box>
           <TextField
+            inputRef={urlsRef}
             placeholder="Сюда можете добавить ссылки на яндекс/mega/drive облака"
             multiline
             rows={9}
@@ -119,6 +130,7 @@ export const App: React.FC = () => {
               fontSize: 14,
             }}
             variant="contained"
+            onClick={submit}
           >
             Конвертировать
           </Button>
