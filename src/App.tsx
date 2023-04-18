@@ -27,26 +27,46 @@ export const App: React.FC = () => {
   };
 
   return (
-    <Box maxWidth={1240} marginX="auto">
-      <Box height={90} display="flex" alignItems="center">
-        <Typography
-          component="span"
-          sx={{ color: "#0055B9" }}
-          fontSize={{ xs: 30, md: 40 }}
-          fontWeight={900}
-        >
-          TD
-        </Typography>
-        <Typography
-          component="span"
-          sx={{ color: "#3F3F3F" }}
-          fontSize={{ xs: 30, md: 40 }}
-          fontWeight={900}
-        >
-          ata конвертер
-        </Typography>
+    <Box
+      maxWidth={1240}
+      marginX="auto"
+      marginTop={3}
+      paddingX={{ xs: 0, sm: 5 }}
+    >
+      <Box height={90} display="flex">
+        <Box>
+          <Typography
+            component="span"
+            sx={{ color: "#0055B9" }}
+            fontSize={{ xs: 30, sm: 40 }}
+            fontWeight={900}
+          >
+            TD
+          </Typography>
+          <Typography
+            component="span"
+            sx={{ color: "#3F3F3F" }}
+            fontSize={{ xs: 30, sm: 40 }}
+            fontWeight={900}
+          >
+            ata конвертер
+          </Typography>
+          <Typography
+            sx={{ color: "#3F3F3F" }}
+            fontSize={{ xs: 18, sm: 24 }}
+            lineHeight={0.5}
+          >
+            конвертер tdata в json+session
+          </Typography>
+        </Box>
       </Box>
-      <Box display="flex" gap={10}>
+      <Box
+        display="flex"
+        flexDirection={{ xs: "column", md: "row" }}
+        alignItems={{ xs: "center", md: "flex-start" }}
+        gap={{ xs: 5, lg: 10 }}
+        marginTop={{ xs: 0, sm: 5 }}
+      >
         <Box display="flex" gap={2} flexDirection="column">
           <Box
             {...getRootProps()}
@@ -60,8 +80,6 @@ export const App: React.FC = () => {
             alignItems="center"
             padding={2}
           >
-            <input {...getInputProps()} />
-
             <Box
               display="flex"
               flexDirection="column"
@@ -103,6 +121,7 @@ export const App: React.FC = () => {
                 ))}
               </Box>
             )}
+            <input {...getInputProps()} />
           </Box>
           <TextField
             inputRef={urlsRef}
@@ -135,7 +154,7 @@ export const App: React.FC = () => {
             Конвертировать
           </Button>
         </Box>
-        <Typography>
+        <Typography padding={{ xs: 3, md: 0 }}>
           What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
           and typesetting industry. Lorem Ipsum has been the industry's standard
           dummy text ever since the 1500s, when an unknown printer took a galley
@@ -145,17 +164,6 @@ export const App: React.FC = () => {
           the 1960s with the release of Letraset sheets containing Lorem Ipsum
           passages, and more recently with desktop publishing software. Why do
           we use it?
-          <br />
-          <br />
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
         </Typography>
       </Box>
     </Box>
