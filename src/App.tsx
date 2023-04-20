@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -6,13 +6,15 @@ import {
   LinearProgress,
   TextField,
   Typography,
-} from "@mui/material";
-import { useDropzone } from "react-dropzone";
-import ClearIcon from "@mui/icons-material/Clear";
-import { saveAs } from "file-saver";
-import { decode } from "base64-arraybuffer";
+} from '@mui/material';
+import { useDropzone } from 'react-dropzone';
+import ClearIcon from '@mui/icons-material/Clear';
+import { saveAs } from 'file-saver';
+import { decode } from 'base64-arraybuffer';
+import { useSnackbar } from 'notistack';
 
 export const App: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [files, setFiles] = useState<File[]>([]);
   const urlsRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
@@ -22,41 +24,56 @@ export const App: React.FC = () => {
     onDrop(accepted) {
       const fileNames = files.map((file) => file.name);
       const newFiles = accepted.filter(
-        (file) => !fileNames.includes(file.name)
+        (file) => !fileNames.includes(file.name),
       );
       setFiles([...files, ...newFiles].slice(0, 10));
     },
   });
 
   const submit = () => {
-    const urls = urlsRef.current?.value?.split("\n")?.filter(Boolean) || [];
+    const urls = urlsRef.current?.value?.split('\n')?.filter(Boolean) || [];
+
+    const count = urls.length + files.length;
+    if (!count) {
+      return enqueueSnackbar('Загрузите архивы/ссылки для конвертации.', {
+        variant: 'info',
+      });
+    }
 
     const formData = new FormData();
-    files.forEach((file) => formData.append("files", file));
-    urls.forEach((url) => formData.append("urls", url));
+    files.forEach((file) => formData.append('files', file));
+    urls.forEach((url) => formData.append('urls', url));
 
     setLoading(true);
 
-    fetch("/api/convert", {
+    fetch('/api/convert', {
       body: formData,
-      method: "post",
+      method: 'post',
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.count > 0 && res.zip) {
-          return new Blob([decode(res.zip)]);
-        } else {
-          throw new Error("TData файлы не найдены.");
+          saveAs(new Blob([decode(res.zip)]), 'sessions.zip');
+          return res;
         }
+        throw new Error('TData файлы не найдены.');
       })
-      .then((res) => saveAs(res, "sessions.zip"))
+      .then((res) =>
+        enqueueSnackbar(`Успешно! Конвертировано сессий - ${res.count}.`, {
+          variant: 'success',
+        }),
+      )
       .then(() => {
         setFiles([]);
         if (urlsRef.current?.value) {
-          urlsRef.current.value = "";
+          urlsRef.current.value = '';
         }
       })
-      .catch(console.error)
+      .catch(() =>
+        enqueueSnackbar('Ошибка. Конвертировано сессий - 0', {
+          variant: 'error',
+        }),
+      )
       .finally(() => setLoading(false));
   };
 
@@ -67,26 +84,33 @@ export const App: React.FC = () => {
       marginTop={3}
       paddingX={{ xs: 0, sm: 5 }}
     >
-      <Box height={90} display="flex">
+      <Box
+        height={90}
+        display="flex"
+        justifyContent={{ xs: 'center', md: 'flex-start' }}
+      >
         <Box>
-          <Typography
-            component="span"
-            sx={{ color: "#0055B9" }}
-            fontSize={{ xs: 30, sm: 40 }}
-            fontWeight={900}
-          >
-            TD
+          <Typography component="h1">
+            <Box
+              component="span"
+              sx={{ color: '#0055B9' }}
+              fontSize={{ xs: 30, sm: 40 }}
+              fontWeight={900}
+            >
+              TD
+            </Box>
+            <Box
+              component="span"
+              sx={{ color: '#3F3F3F' }}
+              fontSize={{ xs: 30, sm: 40 }}
+              fontWeight={900}
+            >
+              ata конвертер
+            </Box>
           </Typography>
           <Typography
-            component="span"
-            sx={{ color: "#3F3F3F" }}
-            fontSize={{ xs: 30, sm: 40 }}
-            fontWeight={900}
-          >
-            ata конвертер
-          </Typography>
-          <Typography
-            sx={{ color: "#3F3F3F" }}
+            component="h2"
+            sx={{ color: '#3F3F3F' }}
             fontSize={{ xs: 18, sm: 24 }}
             lineHeight={0.5}
           >
@@ -96,8 +120,8 @@ export const App: React.FC = () => {
       </Box>
       <Box
         display="flex"
-        flexDirection={{ xs: "column", md: "row" }}
-        alignItems={{ xs: "center", md: "flex-start" }}
+        flexDirection={{ xs: 'column', md: 'row' }}
+        alignItems={{ xs: 'center', md: 'flex-start' }}
         gap={{ xs: 5, lg: 10 }}
         marginTop={{ xs: 0, sm: 5 }}
       >
@@ -123,8 +147,8 @@ export const App: React.FC = () => {
               <Box component="img" src="/dnd.png" />
               <Typography textAlign="center" color="#a9a9a9">
                 {isDragActive
-                  ? "Ловлю..."
-                  : "Перетащите архивы с tdata в это поле"}
+                  ? 'Ловлю...'
+                  : 'Перетащите архивы с tdata в это поле'}
               </Typography>
             </Box>
 
@@ -144,7 +168,7 @@ export const App: React.FC = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         setFiles(
-                          files.filter((currentFile) => currentFile !== file)
+                          files.filter((currentFile) => currentFile !== file),
                         );
                       }}
                     >
@@ -159,27 +183,28 @@ export const App: React.FC = () => {
           </Box>
           <TextField
             inputRef={urlsRef}
-            placeholder="Сюда можете добавить ссылки на яндекс/mega/drive облака"
+            placeholder="Сюда можете добавить ссылки на Яндекс / Mega / Google Drive облака"
             multiline
             rows={9}
             sx={{
               width: 500,
-              maxWidth: "90vw",
-              border: "3px solid rgba(0, 97, 210, 1)",
+              maxWidth: '90vw',
+              border: '3px solid rgba(0, 97, 210, 1)',
               borderRadius: 3,
               fieldset: {
-                border: "none",
+                border: 'none',
               },
             }}
           />
           <Button
+            disabled={loading}
             sx={{
               width: 200,
               height: 40,
-              alignSelf: "center",
+              alignSelf: 'center',
               borderRadius: 2,
-              background: "#0061D2 !important",
-              color: "white",
+              background: '#0061D2 !important',
+              color: 'white',
               fontSize: 14,
             }}
             variant="contained"
@@ -189,17 +214,29 @@ export const App: React.FC = () => {
           </Button>
           {loading && <LinearProgress />}
         </Box>
-        <Typography padding={{ xs: 3, md: 0 }}>
-          What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
-          and typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book. It has survived
-          not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in
-          the 1960s with the release of Letraset sheets containing Lorem Ipsum
-          passages, and more recently with desktop publishing software. Why do
-          we use it?
-        </Typography>
+        <Box padding={{ xs: 3, md: 0 }}>
+          <Typography
+            component="h3"
+            fontSize={18}
+            textAlign={{ xs: 'center', md: 'left' }}
+          >
+            Инструкция
+          </Typography>
+          <Typography>
+            <br />
+            Загрузите в верхнее поле ZIP / RAR архивы с TData, либо вставьте
+            ссылки на облака Yandex / Mega / Google Drive в нижнее поле.
+            Максимально допустимое суммарное количество сессий для конвертации -
+            10.
+            <br />
+            <br />
+            Конвертация является 100% безопасной для аккаунтов, т.к алгоритм не
+            подключается к телеграм и не производит вход.
+            <br />
+            <br />
+            Файлы сессий не сохраняются и не кешируются.
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

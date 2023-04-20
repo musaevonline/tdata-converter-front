@@ -1,8 +1,8 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const myTheme = createTheme({
   typography: {
-    fontFamily: "'Montserrat', sans-serif",
+    fontFamily: 'Montserrat, sans-serif',
   },
   breakpoints: {
     values: {
@@ -17,16 +17,16 @@ export const myTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
-          textTransform: "initial",
-          boxShadow: "none !important;",
+          textTransform: 'initial',
+          boxShadow: 'none !important;',
         },
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          "::placeholder": {
-            color: "#a9a9a9",
+          '::placeholder': {
+            color: '#a9a9a9',
           },
         },
       },

@@ -5,16 +5,23 @@ import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material';
 import { myTheme } from './myTheme';
+import { SnackbarProvider } from 'notistack';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={myTheme}>
-      <App />
+      <SnackbarProvider
+        style={{ fontFamily: 'Montserrat, sans-serif' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        maxSnack={1}
+      >
+        <App />
+      </SnackbarProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

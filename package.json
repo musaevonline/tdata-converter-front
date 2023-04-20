@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.0.11",
     "base64-arraybuffer": "^1.0.2",
     "file-saver": "^2.0.5",
+    "notistack": "^3.0.1",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
@@ -50,6 +51,10 @@
     ]
   },
   "devDependencies": {
-    "@types/file-saver": "^2.0.5"
+    "@types/file-saver": "^2.0.5",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.3.2"
   }
 }
