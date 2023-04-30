@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && rsync -azP build/ package.json root@vk.musaev.online:/root/tdata-converter-front --progress"
+    "deploy": "npm run build && rsync -azP build/ root@vk.musaev.online:/root/tdata-converter-front --progress"
   },
   "eslintConfig": {
     "extends": [
