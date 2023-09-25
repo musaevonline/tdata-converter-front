@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://tdataconverter.ru',
+      target: 'http://localhost:3020',
       changeOrigin: true,
     }),
   );

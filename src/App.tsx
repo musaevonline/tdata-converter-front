@@ -12,6 +12,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { saveAs } from 'file-saver';
 import { decode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
+import { process } from './services';
 
 export const App: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -40,20 +41,11 @@ export const App: React.FC = () => {
       });
     }
 
-    const formData = new FormData();
-    files.forEach((file) => formData.append('files', file));
-    urls.forEach((url) => formData.append('urls', url));
-
     setLoading(true);
-
-    fetch('/api/convert', {
-      body: formData,
-      method: 'post',
-    })
-      .then((res) => res.json())
+    process(urls, files)
       .then((res) => {
         if (res.count > 0 && res.zip) {
-          saveAs(new Blob([decode(res.zip)]), 'sessions.zip');
+          saveAs(new Blob([res.zip]), 'sessions.zip');
           return res;
         }
         throw new Error('TData файлы не найдены.');
@@ -69,11 +61,12 @@ export const App: React.FC = () => {
           urlsRef.current.value = '';
         }
       })
-      .catch(() =>
+      .catch((e) => {
+        console.error(e);
         enqueueSnackbar('Ошибка. Конвертировано сессий - 0', {
           variant: 'error',
-        }),
-      )
+        });
+      })
       .finally(() => setLoading(false));
   };
 
