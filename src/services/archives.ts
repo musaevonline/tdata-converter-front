@@ -4,7 +4,9 @@ import { IFile } from './types';
 import { fileTypeFromBuffer } from 'file-type';
 import { Buffer } from 'buffer';
 
-const unrarPromise = fetch('/unrar.wasm', { credentials: 'same-origin' });
+const unrarPromise = fetch('/tdata-converter-front/unrar.wasm', {
+  credentials: 'same-origin',
+});
 
 export async function unrar(archive: Buffer) {
   const wasmBinary = await (await unrarPromise).arrayBuffer();

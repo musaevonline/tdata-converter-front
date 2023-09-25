@@ -1,7 +1,11 @@
 import initSqlJs from 'sql.js';
 
-const sqlPromise = initSqlJs({ locateFile: () => '/sql-wasm.wasm' });
-const dataPromise = fetch('/template.session').then((res) => res.arrayBuffer());
+const sqlPromise = initSqlJs({
+  locateFile: () => '/tdata-converter-front/sql-wasm.wasm',
+});
+const dataPromise = fetch('/tdata-converter-front/template.session').then(
+  (res) => res.arrayBuffer(),
+);
 
 export async function buildSession(
   dcId: number,

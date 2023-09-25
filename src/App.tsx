@@ -136,7 +136,7 @@ export const App: React.FC = () => {
               alignItems="center"
               flexBasis="40%"
             >
-              <Box component="img" src="/dnd.png" />
+              <Box component="img" src="/tdata-converter-front/dnd.png" />
               <Typography textAlign="center" color="#a9a9a9">
                 {isDragActive
                   ? 'Ловлю...'
