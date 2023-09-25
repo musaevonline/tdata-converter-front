@@ -10,7 +10,6 @@ import {
 import { useDropzone } from 'react-dropzone';
 import ClearIcon from '@mui/icons-material/Clear';
 import { saveAs } from 'file-saver';
-import { decode } from 'base64-arraybuffer';
 import { useSnackbar } from 'notistack';
 import { process } from './services';
 

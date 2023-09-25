@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 module.exports = function override(config, env) {
     config.resolve.fallback = { 
-        url: require.resolve("url"),
         fs: require.resolve("graceful-fs"),
         buffer: require.resolve("buffer"),
         stream: require.resolve("stream-browserify"),

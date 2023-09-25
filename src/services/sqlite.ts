@@ -1,6 +1,7 @@
 import initSqlJs from 'sql.js';
 
 const sqlPromise = initSqlJs({ locateFile: () => '/sql-wasm.wasm' });
+const dataPromise = fetch('/template.session').then((res) => res.arrayBuffer());
 
 export async function buildSession(
   dcId: number,
@@ -8,9 +9,6 @@ export async function buildSession(
   port: number,
   authKey: Buffer,
 ) {
-  const dataPromise = fetch('/template.session').then((res) =>
-    res.arrayBuffer(),
-  );
   const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
   const db = new SQL.Database(new Uint8Array(buf));
 
