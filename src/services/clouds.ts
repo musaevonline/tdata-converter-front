@@ -1,4 +1,4 @@
-import * as Mega from 'megajs';
+import { File } from 'megajs';
 
 export async function downloadFromYandex(url: string) {
   const metadata = (await fetch(
@@ -11,7 +11,7 @@ export async function downloadFromYandex(url: string) {
 }
 
 export async function downloadFromMega(url: string) {
-  return Mega.File.fromURL(url).downloadBuffer({});
+  return File.fromURL(url).downloadBuffer({});
 }
 
 export async function downloadFromDrive(url: string) {
