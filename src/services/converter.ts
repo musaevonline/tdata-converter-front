@@ -1,8 +1,5 @@
 import * as crypto from 'crypto';
-import BinaryReader from '../gramjs/extensions/BinaryReader';
-import IGE from '../gramjs/crypto/IGE';
-import AuthKey from '../gramjs/crypto/AuthKey';
-import { StringSession } from '../gramjs/sessions';
+import { IGE, AuthKey, BinaryReader, StringSession } from '../gramjs';
 import { IFile } from './types';
 import { Buffer } from 'buffer';
 
