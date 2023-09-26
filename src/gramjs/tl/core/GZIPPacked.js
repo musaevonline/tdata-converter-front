@@ -1,5 +1,5 @@
-const { inflate } = require('pako/dist/pako_inflate');
-const { serializeBytes } = require('../index');
+import { inflate } from "pako/dist/pako_inflate";
+import { serializeBytes } from "../index";
 
 // CONTEST const { deflate } = require('pako/dist/pako_deflate')
 
@@ -56,4 +56,4 @@ class GZIPPacked {
     }
 }
 
-module.exports = GZIPPacked;
+export default GZIPPacked;

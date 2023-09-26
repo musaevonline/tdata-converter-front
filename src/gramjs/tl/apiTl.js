@@ -1,4 +1,4 @@
-module.exports = `boolFalse#bc799737 = Bool;
+export default `boolFalse#bc799737 = Bool;
 boolTrue#997275b5 = Bool;
 true#3fedd339 = True;
 vector#1cb5c415 {t:Type} # [ t ] = Vector t;

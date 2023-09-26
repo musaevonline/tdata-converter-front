@@ -1,4 +1,4 @@
-const { Mutex } = require('async-mutex');
+import { Mutex } from "async-mutex";
 
 const mutex = new Mutex();
 
@@ -137,4 +137,4 @@ class PromisedWebSockets {
     }
 }
 
-module.exports = PromisedWebSockets;
+export default PromisedWebSockets;

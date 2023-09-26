@@ -1,4 +1,4 @@
-const Session = require('./Abstract');
+import Session from "./Abstract";
 
 class MemorySession extends Session {
     constructor() {
@@ -251,4 +251,4 @@ class MemorySession extends Session {
     } */
 }
 
-module.exports = MemorySession;
+export default MemorySession;

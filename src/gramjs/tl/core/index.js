@@ -1,7 +1,7 @@
-const TLMessage = require('./TLMessage');
-const RPCResult = require('./RPCResult');
-const MessageContainer = require('./MessageContainer');
-const GZIPPacked = require('./GZIPPacked');
+import TLMessage from "./TLMessage";
+import RPCResult from "./RPCResult";
+import MessageContainer from "./MessageContainer";
+import GZIPPacked from "./GZIPPacked";
 
 const coreObjects = {
     [RPCResult.CONSTRUCTOR_ID]: RPCResult,
@@ -9,7 +9,7 @@ const coreObjects = {
     [MessageContainer.CONSTRUCTOR_ID]: MessageContainer,
 };
 
-module.exports = {
+export default {
     TLMessage,
     RPCResult,
     MessageContainer,

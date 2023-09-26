@@ -1,14 +1,7 @@
-const BigInt = require('big-integer');
-const { constructors } = require('./tl');
-const {
-    readBigIntFromBuffer,
-    readBufferFromBigInt,
-    sha256,
-    bigIntMod,
-    modExp,
-    generateRandomBytes,
-} = require('./Helpers');
-const crypto = require('./crypto/crypto');
+import BigInt from "big-integer";
+import { constructors } from "./tl";
+import { readBigIntFromBuffer, readBufferFromBigInt, sha256, bigIntMod, modExp, generateRandomBytes } from "./Helpers";
+import crypto from "./crypto/crypto";
 
 const SIZE_FOR_HASH = 256;
 
@@ -275,7 +268,7 @@ async function computeCheck(request, password) {
     });
 }
 
-module.exports = {
+export default {
     computeCheck,
     computeDigest,
 };

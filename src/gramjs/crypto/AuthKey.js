@@ -1,11 +1,6 @@
-const {
-    sha1,
-    toSignedLittleBuffer,
-    readBufferFromBigInt,
-    readBigIntFromBuffer,
-} = require('../Helpers');
-const BinaryReader = require('../extensions/BinaryReader');
-const { sleep } = require('../Helpers');
+import { sha1, toSignedLittleBuffer, readBufferFromBigInt, readBigIntFromBuffer } from "../Helpers";
+import BinaryReader from "../extensions/BinaryReader";
+import { sleep } from "../Helpers";
 
 class AuthKey {
     constructor(value, hash) {
@@ -79,4 +74,4 @@ class AuthKey {
     }
 }
 
-module.exports = AuthKey;
+export default AuthKey;

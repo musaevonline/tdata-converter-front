@@ -1,5 +1,5 @@
-const { IGE: AESIGE } = require('@cryptography/aes');
-const Helpers = require('../Helpers');
+import { IGE as AESIGE } from "@cryptography/aes";
+import Helpers from "../Helpers";
 
 class IGENEW {
     constructor(key, iv) {
@@ -30,4 +30,4 @@ class IGENEW {
     }
 }
 
-module.exports = IGENEW;
+export default IGENEW;

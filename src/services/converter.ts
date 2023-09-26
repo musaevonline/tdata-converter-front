@@ -1,7 +1,9 @@
 import * as crypto from 'crypto';
-import { IGE, AuthKey, BinaryReader, StringSession } from '../gramjs';
+import GramJs from '../gramjs';
 import { IFile } from './types';
 import { Buffer } from 'buffer';
+
+const { IGE, AuthKey, BinaryReader, StringSession } = GramJs;
 
 export function tdesktop_md5(data: string) {
   let result = '';

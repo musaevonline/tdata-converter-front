@@ -1,6 +1,6 @@
-const MemorySession = require('./Memory');
-const AuthKey = require('../crypto/AuthKey');
-const utils = require('../Utils');
+import MemorySession from "./Memory";
+import AuthKey from "../crypto/AuthKey";
+import utils from "../Utils";
 
 const STORAGE_KEY_BASE = 'GramJs-session-';
 const SESSION_DATA_PREFIX = 'session:';
@@ -182,4 +182,4 @@ function generateStorageKey() {
     return `${STORAGE_KEY_BASE}${Date.now()}`;
 }
 
-module.exports = StorageSession;
+export default StorageSession;

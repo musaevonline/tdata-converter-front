@@ -1,13 +1,18 @@
-const api = require('./api');
-const {
-    serializeBytes,
-    serializeDate,
-} = require('./generationHelpers');
+import api from "./api";
+import { serializeBytes, serializeDate } from "./generationHelpers";
 
-module.exports = {
+export default {
     // TODO Refactor internal usages to always use `api`.
     constructors: api,
     requests: api,
+    serializeBytes,
+    serializeDate,
+};
+
+export {
+    // TODO Refactor internal usages to always use `api`.
+    api as constructors,
+    api as requests,
     serializeBytes,
     serializeDate,
 };

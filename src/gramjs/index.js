@@ -1,9 +1,9 @@
-const BinaryReader = require('./extensions/BinaryReader');
-const IGE = require('./crypto/IGE');
-const AuthKey = require('./crypto/AuthKey');
-const StringSession = require('./sessions/StringSession');
+import BinaryReader from "./extensions/BinaryReader";
+import IGE from "./crypto/IGE";
+import AuthKey from "./crypto/AuthKey";
+import StringSession from "./sessions/StringSession";
 
-module.exports = {
+export default {
     BinaryReader,
     StringSession,
     IGE,

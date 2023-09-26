@@ -12,4 +12,4 @@ class BinaryWriter {
     }
 }
 
-module.exports = BinaryWriter;
+export default BinaryWriter;

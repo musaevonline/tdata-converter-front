@@ -1,6 +1,6 @@
-const BigInt = require('big-integer');
-const crypto = require('./crypto/crypto');
-const {Buffer} = require('buffer')
+import BigInt from "big-integer";
+import crypto from "./crypto/crypto";
+import { Buffer } from "buffer";
 
 /**
  * converts a buffer to big int
@@ -341,7 +341,29 @@ function crc32(buf) {
     return (crc ^ (-1)) >>> 0;
 }
 
-module.exports = {
+export default {
+    readBigIntFromBuffer,
+    readBufferFromBigInt,
+    generateRandomLong,
+    mod,
+    crc32,
+    generateRandomBytes,
+    // calcKey,
+    generateKeyDataFromNonce,
+    sha1,
+    sha256,
+    bigIntMod,
+    modExp,
+    getRandomInt,
+    sleep,
+    getByteArray,
+    // isArrayLike,
+    toSignedLittleBuffer,
+    convertToLittle,
+    bufferXor,
+};
+
+export {
     readBigIntFromBuffer,
     readBufferFromBigInt,
     generateRandomLong,

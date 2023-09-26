@@ -11,4 +11,4 @@ class TLMessage {
     }
 }
 
-module.exports = TLMessage;
+export default TLMessage;

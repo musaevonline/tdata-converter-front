@@ -1,4 +1,4 @@
-const {Buffer} = require('buffer')
+import { Buffer } from "buffer";
 
 const snakeToCamelCase = (name) => {
     const result = name.replace(/(?:^|_)([a-z])/g, (_, g) => g.toUpperCase());
@@ -338,7 +338,19 @@ function serializeDate(dt) {
     throw Error(`Cannot interpret "${dt}" as a date`);
 }
 
-module.exports = {
+export default {
+    findAll,
+    parseTl,
+    buildArgConfig,
+    fromLine,
+    CORE_TYPES,
+    serializeDate,
+    serializeBytes,
+    snakeToCamelCase,
+    variableSnakeToCamelCase,
+};
+
+export {
     findAll,
     parseTl,
     buildArgConfig,

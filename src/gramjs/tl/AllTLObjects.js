@@ -1,4 +1,4 @@
-const api = require('./api');
+import api from "./api";
 
 const LAYER = 152;
 const tlobjects = {};
@@ -13,7 +13,7 @@ for (const tl of Object.values(api)) {
     }
 }
 
-module.exports = {
+export default {
     LAYER,
     tlobjects,
 };

@@ -45,4 +45,4 @@ class MTProtoRequest {
     }
 }
 
-module.exports = MTProtoRequest;
+export default MTProtoRequest;

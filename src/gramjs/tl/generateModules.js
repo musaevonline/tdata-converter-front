@@ -1,7 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-
-require('./types-generator/generate');
+import fs from "fs";
+import path from "path";
+import "./types-generator/generate";
 
 function generateSchema(input, output, reducedMethods) {
     let apiTl = fs.readFileSync(
@@ -43,7 +42,7 @@ function generateSchema(input, output, reducedMethods) {
 
     fs.writeFileSync(
         path.resolve(__dirname, output),
-        `module.exports = \`${stripTl(apiTl)}\`;`,
+        `export default \`${stripTl(apiTl)}\`;`,
     );
 }
 

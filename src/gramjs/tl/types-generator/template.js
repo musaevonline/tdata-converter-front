@@ -3,7 +3,7 @@ const RAW_TYPES = new Set(['Bool', 'X'])
 
 const FLAG_REGEX = /flags\d*/;
 
-module.exports = ({ types, constructors, functions }) => {
+export default ({ types, constructors, functions }) => {
     function groupByKey(collection, key) {
         return collection.reduce((byKey, member) => {
             const keyValue = member[key] || '_'

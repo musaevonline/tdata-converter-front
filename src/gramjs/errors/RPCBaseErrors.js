@@ -117,7 +117,20 @@ class TimedOutError extends RPCError {
     message = 'Timeout';
 }
 
-module.exports = {
+export default {
+    RPCError,
+    InvalidDCError,
+    BadRequestError,
+    UnauthorizedError,
+    ForbiddenError,
+    NotFoundError,
+    AuthKeyError,
+    FloodError,
+    ServerError,
+    TimedOutError,
+};
+
+export {
     RPCError,
     InvalidDCError,
     BadRequestError,

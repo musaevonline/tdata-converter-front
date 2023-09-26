@@ -1,6 +1,6 @@
-const MemorySession = require('./Memory');
-const AuthKey = require('../crypto/AuthKey');
-const BinaryReader = require('../extensions/BinaryReader');
+import MemorySession from "./Memory";
+import AuthKey from "../crypto/AuthKey";
+import BinaryReader from "../extensions/BinaryReader";
 
 const CURRENT_VERSION = '1';
 
@@ -102,4 +102,4 @@ class StringSession extends MemorySession {
     }
 }
 
-module.exports = StringSession;
+export default StringSession;

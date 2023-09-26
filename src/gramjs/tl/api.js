@@ -1,14 +1,8 @@
-const {
-    parseTl,
-    serializeBytes,
-    serializeDate,
-} = require('./generationHelpers');
-const {
-    toSignedLittleBuffer,
-} = require('../Helpers');
+import { parseTl, serializeBytes, serializeDate } from "./generationHelpers";
+import { toSignedLittleBuffer } from "../Helpers";
 
-const tlContent = require('./apiTl');
-const schemeContent = require('./schemaTl');
+import tlContent from "./apiTl";
+import schemeContent from "./schemaTl";
 
 /* CONTEST
 const NAMED_AUTO_CASTS = new Set([
@@ -403,4 +397,4 @@ function createClasses(classesType, params) {
     return classes;
 }
 
-module.exports = buildApiFromTlSchema();
+export default buildApiFromTlSchema();

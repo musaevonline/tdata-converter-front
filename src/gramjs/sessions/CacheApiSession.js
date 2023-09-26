@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const StorageSession = require('./StorageSession');
+import StorageSession from "./StorageSession";
 
 const CACHE_NAME = 'GramJs';
 
@@ -25,4 +25,4 @@ class CacheApiSession extends StorageSession {
     }
 }
 
-module.exports = CacheApiSession;
+export default CacheApiSession;

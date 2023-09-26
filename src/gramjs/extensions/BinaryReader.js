@@ -4,10 +4,10 @@
 // const { readBigIntFromBuffer } = require('../Helpers');
 
 
-const errors_1 = require("../errors");
-const core_1 = require("../tl/core");
-const AllTLObjects_1 = require("../tl/AllTLObjects");
-const Helpers_1 = require("../Helpers");
+import errors_1 from "../errors";
+import core_1 from "../tl/core";
+import AllTLObjects_1 from "../tl/AllTLObjects";
+import Helpers_1 from "../Helpers";
 class BinaryReader {
     /**
      * Small utility class to read binary data.
@@ -242,4 +242,4 @@ class BinaryReader {
         this.offset += offset;
     }
 }
-module.exports = BinaryReader;
+export default BinaryReader;

@@ -27,4 +27,4 @@ class AsyncQueue {
     }
 }
 
-module.exports = AsyncQueue;
+export default AsyncQueue;

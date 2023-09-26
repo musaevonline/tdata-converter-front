@@ -1,6 +1,6 @@
-const MemorySession = require('./Memory');
-const AuthKey = require('../crypto/AuthKey');
-const utils = require('../Utils');
+import MemorySession from "./Memory";
+import AuthKey from "../crypto/AuthKey";
+import utils from "../Utils";
 
 class CallbackSession extends MemorySession {
     constructor(sessionData, callback) {
@@ -107,4 +107,4 @@ class CallbackSession extends MemorySession {
     }
 }
 
-module.exports = CallbackSession;
+export default CallbackSession;

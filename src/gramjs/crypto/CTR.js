@@ -1,4 +1,4 @@
-const crypto = require('./crypto');
+import crypto from "./crypto";
 
 class CTR {
     constructor(key, iv) {
@@ -14,4 +14,4 @@ class CTR {
     }
 }
 
-module.exports = CTR;
+export default CTR;

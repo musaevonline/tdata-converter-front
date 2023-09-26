@@ -1,5 +1,7 @@
-const { RpcError } = require('../index').constructors;
-const GZIPPacked = require('./GZIPPacked');
+import { constructors } from "../index";
+import GZIPPacked from "./GZIPPacked";
+
+const RpcError = constructors.RpcError
 
 class RPCResult {
     static CONSTRUCTOR_ID = 0xf35c6d01;
@@ -31,4 +33,4 @@ class RPCResult {
     }
 }
 
-module.exports = RPCResult;
+export default RPCResult;

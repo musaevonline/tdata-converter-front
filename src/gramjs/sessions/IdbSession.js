@@ -1,5 +1,5 @@
-const idb = require('idb-keyval');
-const StorageSession = require('./StorageSession');
+import idb from "idb-keyval";
+import StorageSession from "./StorageSession";
 
 const CACHE_NAME = 'GramJs';
 
@@ -17,4 +17,4 @@ class IdbSession extends StorageSession {
     }
 }
 
-module.exports = IdbSession;
+export default IdbSession;

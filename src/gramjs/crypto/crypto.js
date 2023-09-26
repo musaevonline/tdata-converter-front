@@ -1,9 +1,6 @@
-const AES = require('@cryptography/aes').default;
-const {
-    i2ab,
-    ab2i,
-} = require('./converters');
-const { getWords } = require('./words');
+import { default as AES } from "@cryptography/aes";
+import { i2ab, ab2i } from "./converters";
+import { getWords } from "./words";
 
 class Counter {
     constructor(initialValue) {
@@ -121,7 +118,7 @@ function createHash(algorithm) {
     return new Hash(algorithm);
 }
 
-module.exports = {
+export default {
     createCipheriv,
     createDecipheriv,
     randomBytes,

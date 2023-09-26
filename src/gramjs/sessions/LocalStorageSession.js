@@ -1,4 +1,4 @@
-const StorageSession = require('./StorageSession');
+import StorageSession from "./StorageSession";
 
 class LocalStorageSession extends StorageSession {
     _delete() {
@@ -14,4 +14,4 @@ class LocalStorageSession extends StorageSession {
     }
 }
 
-module.exports = LocalStorageSession;
+export default LocalStorageSession;

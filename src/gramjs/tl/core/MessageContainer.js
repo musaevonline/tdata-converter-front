@@ -1,4 +1,4 @@
-const TLMessage = require('./TLMessage');
+import TLMessage from "./TLMessage";
 
 class MessageContainer {
     static CONSTRUCTOR_ID = 0x73f1f8dc;
@@ -43,4 +43,4 @@ class MessageContainer {
     }
 }
 
-module.exports = MessageContainer;
+export default MessageContainer;

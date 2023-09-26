@@ -1,8 +1,8 @@
-const path = require('path');
-const fs = require('fs');
+import path from "path";
+import fs from "fs";
 
-const { parseTl } = require('../generationHelpers');
-const templateFn = require('./template');
+import { parseTl } from "../generationHelpers";
+import templateFn from "./template";
 
 const INPUT_FILE = path.resolve(__dirname, '../static/api.tl');
 const SCHEMA_FILE = path.resolve(__dirname, '../static/schema.tl');

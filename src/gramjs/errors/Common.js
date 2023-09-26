@@ -137,7 +137,17 @@ class BadMessageError extends Error {
 
 // TODO : Support multi errors.
 
-module.exports = {
+export default {
+    ReadCancelledError,
+    TypeNotFoundError,
+    InvalidChecksumError,
+    InvalidBufferError,
+    SecurityError,
+    CdnFileTamperedError,
+    BadMessageError,
+};
+
+export {
     ReadCancelledError,
     TypeNotFoundError,
     InvalidChecksumError,

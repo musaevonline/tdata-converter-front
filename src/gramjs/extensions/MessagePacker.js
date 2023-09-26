@@ -1,6 +1,6 @@
-const MessageContainer = require('../tl/core/MessageContainer');
-const TLMessage = require('../tl/core/TLMessage');
-const BinaryWriter = require('./BinaryWriter');
+import MessageContainer from "../tl/core/MessageContainer";
+import TLMessage from "../tl/core/TLMessage";
+import BinaryWriter from "./BinaryWriter";
 
 const USE_INVOKE_AFTER_WITH = [
     'messages.SendMessage', 'messages.SendMedia', 'messages.SendMultiMedia',
@@ -130,4 +130,4 @@ class MessagePacker {
     }
 }
 
-module.exports = MessagePacker;
+export default MessagePacker;

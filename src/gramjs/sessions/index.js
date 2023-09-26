@@ -1,11 +1,11 @@
-const Memory = require('./Memory');
-const StringSession = require('./StringSession');
-const CacheApiSession = require('./CacheApiSession');
-const LocalStorageSession = require('./LocalStorageSession');
-const IdbSession = require('./IdbSession');
-const CallbackSession = require('./CallbackSession');
+import Memory from "./Memory";
+import StringSession from "./StringSession";
+import CacheApiSession from "./CacheApiSession";
+import LocalStorageSession from "./LocalStorageSession";
+import IdbSession from "./IdbSession";
+import CallbackSession from "./CallbackSession";
 
-module.exports = {
+export default {
     Memory,
     StringSession,
     CacheApiSession,

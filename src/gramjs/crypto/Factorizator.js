@@ -1,5 +1,5 @@
-const BigInt = require('big-integer');
-const { modExp } = require('../Helpers');
+import BigInt from "big-integer";
+import { modExp } from "../Helpers";
 
 class Factorizator {
     /**
@@ -93,4 +93,4 @@ class Factorizator {
     }
 }
 
-module.exports = Factorizator;
+export default Factorizator;

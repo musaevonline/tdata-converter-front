@@ -1,9 +1,4 @@
-const {
-    RPCError,
-    InvalidDCError,
-    FloodError,
-    BadRequestError,
-} = require('./RPCBaseErrors');
+import { RPCError, InvalidDCError, FloodError, BadRequestError } from "./RPCBaseErrors";
 
 class UserMigrateError extends InvalidDCError {
     constructor(args) {
@@ -104,7 +99,20 @@ const rpcErrorRe = [
     [/EMAIL_UNCONFIRMED_(\d+)/, EmailUnconfirmedError],
 
 ];
-module.exports = {
+export default {
+    rpcErrorRe,
+    FileMigrateError,
+    FloodTestPhoneWaitError,
+    FloodWaitError,
+    PhoneMigrateError,
+    SlowModeWaitError,
+    UserMigrateError,
+    NetworkMigrateError,
+    MsgWaitError,
+    EmailUnconfirmedError,
+};
+
+export {
     rpcErrorRe,
     FileMigrateError,
     FloodTestPhoneWaitError,
