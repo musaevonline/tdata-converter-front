@@ -1,5 +1,13 @@
 # Demo: https://musaevonline.github.io/tdata-converter-front
 
+# Инструкция
+
+Загрузите в верхнее поле ZIP / RAR архивы с TData, либо вставьте ссылки на облака Yandex / Mega / Google Drive в нижнее поле.
+
+Конвертация является 100% безопасной для аккаунтов, т.к алгоритм не подключается к телеграм и не производит вход.
+
+Файлы сессий не сохраняются и не кешируются.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
