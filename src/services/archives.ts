@@ -6,10 +6,10 @@ import { Buffer } from 'buffer';
 
 const unrarPromise = fetch('/tdata-converter-front/unrar.wasm', {
   credentials: 'same-origin',
-});
+}).then((response) => response.arrayBuffer());
 
 export async function unrar(archive: Buffer) {
-  const wasmBinary = await (await unrarPromise).arrayBuffer();
+  const wasmBinary = await unrarPromise;
   const extractor = await createExtractorFromData({
     wasmBinary,
     data: archive,
